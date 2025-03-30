@@ -1,0 +1,17 @@
+[package]
+name = "mastodon-analytics"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+libc = "0.2"
+chrono = "0.4"
+mpi = "0.6"
+memmap2 = "0.5"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+clap = { version = "4.0", features = ["derive"] }
+
+
+[profile.release]
+strip = true
