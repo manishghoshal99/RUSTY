@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=mastodon_2n8c
+#SBATCH --job-name=mastodon_rust
 #SBATCH --partition=sapphire
 #SBATCH --nodes=2
 #SBATCH --ntasks=8
@@ -7,21 +7,23 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --time=01:00:00
 #SBATCH --mem=32G
-#SBATCH --output=./output/logs/mastodon_2n8c_%j.out
-#SBATCH --error=./output/logs/mastodon_2n8c_%j.err
+#SBATCH --output=./output/logs/mastodon_rust_%j.out
+#SBATCH --error=./output/logs/mastodon_rust_%j.err
 
-# Load required modules
-module load Python/3.10.4
-module load mpi4py/3.1.4
+# (If required, load any modules for Rust and MPI; for example, you might need to load OpenMPI)
+module load OpenMPI
 
-# Create output directories
+# Create necessary output directories
 mkdir -p ./output/results/2nodes_8cores
 mkdir -p ./output/logs
 
 # Run the MPI program with 8 processes across 2 nodes (4 per node)
-srun -n 8 --nodes=2 --ntasks-per-node=4 python3 ./src/main.py -data $1 -output ./output/results/2nodes_8cores
+# Note: Adjust the paths to the binary and the data file as needed.
+srun -n 8 --nodes=2 --ntasks-per-node=4 ./target/release/mastodon_analytics \
+    -data ../data/mastodon-144g.ndjson \
+    -output ./output/results/2nodes_8cores
 
-# Copy the output to a standardized file for analysis
+# Optionally, copy or further process the output
 cp ./output/results/2nodes_8cores/runtime.txt ./output/2node8core.txt
 
 echo "Job completed"
