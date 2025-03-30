@@ -30,8 +30,8 @@ Kernel configured for up to 8 processors.
 Processor type: arm64e (ARM64E)
 Processors active: 0 1 2 3 4 5 6 7
 Primary memory available: 8.00 gigabytes
-Default processor set: 660 tasks, 4561 threads, 8 processors
-Load average: 72.46, Mach factor: 0.10
+Default processor set: 653 tasks, 4536 threads, 8 processors
+Load average: 16.69, Mach factor: 0.54
 /bin/machine           = unknown
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
@@ -1028,7 +1028,7 @@ configure:18672: checking for memfd_create
 configure:18672: cc -o conftest -Wall -O0 -ffunction-sections -fdata-sections -fPIC -gdwarf-2 -fno-omit-frame-pointer --target=arm64-apple-macosx -mmacosx-version-min=15.2 -Wno-implicit-function-declaration -fexceptions   conftest.c  >&5
 Undefined symbols for architecture arm64:
   "_memfd_create", referenced from:
-      _main in conftest-7a7abd.o
+      _main in conftest-9068cc.o
 ld: symbol(s) not found for architecture arm64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:18672: $? = 1
